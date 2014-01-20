@@ -1,13 +1,14 @@
 #include "headers.h"
 
-#define M1 3
-#define M2 5
-#define M3 6
-#define M4 9
+#define M1 0
+#define M2 1
+#define M3 2
+#define M4 3
+
+#define MA 5
+#define MB 6
 
 #define S1 4
-
-#define SPEED 128
 
 void setup() {
   // Motor control (PWM)
@@ -15,6 +16,9 @@ void setup() {
   pinMode(M2, OUTPUT);
   pinMode(M3, OUTPUT);
   pinMode(M4, OUTPUT);
+  
+  pinMode(MA, OUTPUT);
+  pinMode(MB, OUTPUT);
   
   // Microswitch pin
   pinMode(S1, INPUT);
@@ -31,18 +35,21 @@ void setMotor(t_motor motor, t_direction direction){
   if (motor == A){
     pinA = M1;
     pinB = M2;
+    analogWrite(MA, 200);
   } else {
     pinA = M3;
     pinB = M4;
+    analogWrite(MB, 200);
   }
+  
   switch(direction){
     case FORWARD:
-      analogWrite(pinA, SPEED);
+      digitalWrite(pinA, HIGH);
       digitalWrite(pinB, LOW);
       break;
     case BACKWARD:
       digitalWrite(pinA, LOW);
-      analogWrite(pinB, SPEED);
+      digitalWrite(pinB, HIGH);
       break;
     case STOP:
       digitalWrite(pinA, LOW);
