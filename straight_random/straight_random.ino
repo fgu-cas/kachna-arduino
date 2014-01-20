@@ -33,8 +33,8 @@ void setMotor(t_motor motor, t_direction direction){
   int pinA;
   int pinB;
   if (motor == A){
-    pinA = M1;
-    pinB = M2;
+    pinA = M2;
+    pinB = M1;
     analogWrite(MA, 200);
   } else {
     pinA = M3;
