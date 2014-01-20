@@ -10,6 +10,8 @@
 
 #define S1 4
 
+#define STRAIGHT
+
 void setup() {
   // Motor control (PWM)
   pinMode(M1, OUTPUT);
@@ -29,17 +31,21 @@ void setup() {
 }
 
 
-void setMotor(t_motor motor, t_direction direction){
+void setMotor(t_motor motor, t_direction direction, int speed = 200){
+  if (speed > 200){
+    speed = 200;
+  }
+
   int pinA;
   int pinB;
   if (motor == A){
     pinA = M2;
     pinB = M1;
-    analogWrite(MA, 200);
+    analogWrite(MA, speed);
   } else {
     pinA = M3;
     pinB = M4;
-    analogWrite(MB, 200);
+    analogWrite(MB, speed);
   }
   
   switch(direction){
@@ -64,7 +70,20 @@ void loop() {
   setMotor(B, FORWARD);
   
   // Wait until the switch is hit
+  #ifdef STRAIGHT
   while (digitalRead(S1));
+  #else
+  while (digitalRead(S1)){
+    // Wait 200-1000 ms
+    delay(200+(random(17)*50));
+    if (random(2)){
+      setMotor(A, FORWARD, random(200));
+    } else {
+      setMotor(B, FORWARD, random(200));
+    }
+  }
+  #endif
+
   
   // Stop
   setMotor(A, STOP);
