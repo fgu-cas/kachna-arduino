@@ -8,7 +8,7 @@
 #define MA 5
 #define MB 6
 
-#define S1 4
+#define S1 A0
 
 void setup() {
   // Motor control (PWM)
