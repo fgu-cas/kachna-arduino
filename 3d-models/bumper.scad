@@ -4,10 +4,10 @@ Z = 15;
 
 module bumper_half(){
   polygon([[0,0],
-           [X/2,0],
-           [X/2,Y],
+           [X/2-5,0],
+           [X/2-5,Y],
            [0,Y]]);
-  translate([X/2, -15])
+  translate([X/2-5, -15])
     intersection(){
       difference(){
         circle(15+Y, $fn=70);
