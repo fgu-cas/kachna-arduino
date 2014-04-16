@@ -20,7 +20,9 @@ void setup() {
   pinMode(M4, OUTPUT);
   
   pinMode(MA, OUTPUT);
+  digitalWrite(MA, HIGH);
   pinMode(MB, OUTPUT);
+  digitalWrite(MB, HIGH);
   
   // Microswitch pin
   pinMode(S1, INPUT);
@@ -41,11 +43,9 @@ void setMotor(t_motor motor, t_direction direction, int speed = 200){
   if (motor == A){
     pinA = M2;
     pinB = M1;
-    analogWrite(MA, speed);
   } else {
     pinA = M3;
     pinB = M4;
-    analogWrite(MB, speed);
   }
   
   switch(direction){
