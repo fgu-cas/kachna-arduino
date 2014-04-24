@@ -90,7 +90,7 @@ void loop() {
   setMotor(B, STOP);
   
   // Give the rat a break
-  delay(500);
+  delay(15000);
   
   // Drive back a bit, so that we won't bump into the wall
   setMotor(A, BACKWARD);
